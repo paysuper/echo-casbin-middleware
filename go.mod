@@ -1,4 +1,4 @@
-module github.com/paysuper/echo-casbin-micro
+module github.com/paysuper/echo-casbin-middleware
 
 require (
 	github.com/labstack/echo/v4 v4.1.6
