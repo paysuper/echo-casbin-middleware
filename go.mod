@@ -3,7 +3,7 @@ module github.com/paysuper/echo-casbin-middleware
 require (
 	github.com/labstack/echo/v4 v4.1.6
 	github.com/micro/go-micro v1.7.1-0.20190724203029-7ca8f8f0ab98
-	github.com/unistack-org/casbin-micro v0.0.0-20190725231001-e35616531b31
+	github.com/paysuper/casbin-server v0.0.0-20190809212717-30678425fdda
 )
 
 replace (
