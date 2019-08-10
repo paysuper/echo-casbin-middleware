@@ -9,4 +9,5 @@ require (
 replace (
 	github.com/hashicorp/consul => github.com/hashicorp/consul v1.5.2
 	github.com/hashicorp/consul/api => github.com/hashicorp/consul/api v1.1.0
+	github.com/unistack-org/casbin-micro => github.com/paysuper/casbin-server v0.0.0-20190809212717-30678425fdda
 )

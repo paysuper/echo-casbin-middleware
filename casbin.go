@@ -1,41 +1,4 @@
-/* Package casbin provides middleware to enable ACL, RBAC, ABAC authorization support.
-
-Simple example:
-
-	package main
-
-	import (
-		"github.com/casbin/casbin"
-		"github.com/labstack/echo/v4"
-		"github.com/labstack/echo-contrib/casbin" casbin-mw
-	)
-
-	func main() {
-		e := echo.New()
-
-		// Mediate the access for every request
-		e.Use(casbin-mw.Middleware(casbin.NewEnforcer("auth_model.conf", "auth_policy.csv")))
-
-		e.Logger.Fatal(e.Start(":1323"))
-	}
-
-Advanced example:
-
-	package main
-
-	import (
-		"github.com/labstack/echo/v4"
-	authzmw	"github.com/labstack/echo-contrib/casbin"
-	)
-
-	func main() {
-		e := echo.New()
-
-		echo.Use(authzmw.Middleware(c))
-
-		e.Logger.Fatal(e.Start(":1323"))
-	}
-*/
+/* Package casbin provides middleware to enable ACL, RBAC, ABAC authorization support. */
 
 package casbin
 
