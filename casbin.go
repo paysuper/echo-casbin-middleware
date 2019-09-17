@@ -99,8 +99,8 @@ func (cfg *Config) CheckPermission(c echo.Context) bool {
 	path := c.Request().URL.Path
 
 	// check permisions
-	rsp, err := cfg.client.Enforce(c.Request().Context(), &casbinpb.EnforceRequest{Params: []string{user, path, method}})
-	if err == nil && rsp.Res {
+	_, err := cfg.client.Enforce(c.Request().Context(), &casbinpb.EnforceRequest{Params: []string{user, path, method}})
+	if err == nil {
 		return true
 	}
 

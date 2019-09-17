@@ -259,6 +259,8 @@ github.com/grpc-ecosystem/go-grpc-prometheus v1.2.0/go.mod h1:8NvIoxWQoOIhqOTXgf
 github.com/grpc-ecosystem/grpc-gateway v1.8.5/go.mod h1:vNeuVxBJEsws4ogUvrchl83t/GYV9WGTSLVdBhOQFDY=
 github.com/grpc-ecosystem/grpc-gateway v1.9.2/go.mod h1:vNeuVxBJEsws4ogUvrchl83t/GYV9WGTSLVdBhOQFDY=
 github.com/grpc-ecosystem/grpc-gateway v1.9.5/go.mod h1:vNeuVxBJEsws4ogUvrchl83t/GYV9WGTSLVdBhOQFDY=
+github.com/grpc-ecosystem/grpc-gateway v1.11.1 h1:/dBYI+n4xIL+Y9SKXQrjlKTmJJDwCSlNLRwZ5nBhIek=
+github.com/grpc-ecosystem/grpc-gateway v1.11.1/go.mod h1:vNeuVxBJEsws4ogUvrchl83t/GYV9WGTSLVdBhOQFDY=
 github.com/hashicorp/consul/api v1.1.0 h1:BNQPM9ytxj6jbjjdRPioQ94T6YXriSopn0i8COv6SRA=
 github.com/hashicorp/consul/api v1.1.0/go.mod h1:VmuI/Lkw1nC05EYQWNKwWGbkg+FbDBtguAZLlVdkD9Q=
 github.com/hashicorp/consul/sdk v0.1.1/go.mod h1:VKf9jXwCTEY1QZP2MOLRhb5i/I/ssyNV1vwHyQBF0x8=
@@ -468,6 +470,8 @@ github.com/paysuper/casbin-server v0.0.0-20190912100652-3aad9c05777d h1:ac3Pt/An
 github.com/paysuper/casbin-server v0.0.0-20190912100652-3aad9c05777d/go.mod h1:bOTzyHxSerSHbkKQPzuCKVYIpgaViadQzy/OlvkGRAo=
 github.com/paysuper/casbin-server v0.0.0-20190912105647-fe8264c2c735 h1:3PH0SdJrC9t0Wa4JDV87lXI7rytrVvH3wHoq8ZJXmzw=
 github.com/paysuper/casbin-server v0.0.0-20190912105647-fe8264c2c735/go.mod h1:gMlVgOqYVDCYdDW76UnG7Dyhjxa6SSbVEf3Tab5VHcs=
+github.com/paysuper/casbin-server v0.0.0-20190917123249-18c6e92d7465 h1:Ix+KxKyn+URYMswBsKK907+LHpYOxcIXYI4JnEEkhRs=
+github.com/paysuper/casbin-server v0.0.0-20190917123249-18c6e92d7465/go.mod h1:IOIPKeceJ91GLZuhmnz/ZSYPB1v0RjM8lyRs/Rdr2po=
 github.com/pelletier/go-buffruneio v0.2.0/go.mod h1:JkE26KsDizTr40EUHkXVtNPvgGtbSNq5BcowyYOWdKo=
 github.com/philhofer/fwd v1.0.0/go.mod h1:gk3iGcWd9+svBvR0sR+KPcfE+RNWozjowpeBVG3ZVNU=
 github.com/pierrec/lz4 v0.0.0-20190327172049-315a67e90e41/go.mod h1:3/3N9NVKO0jef7pBehbT1qWhCMrIgbYNnFAZCqQ5LRc=

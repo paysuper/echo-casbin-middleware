@@ -10,7 +10,7 @@ require (
 	github.com/mattn/go-sqlite3 v1.11.0 // indirect
 	github.com/micro/go-micro v1.10.0
 	github.com/miekg/dns v1.1.17 // indirect
-	github.com/paysuper/casbin-server v0.0.0-20190912105647-fe8264c2c735
+	github.com/paysuper/casbin-server v0.0.0-20190917123249-18c6e92d7465
 	github.com/prometheus/client_model v0.0.0-20190812154241-14fe0d1b01d4 // indirect
 	github.com/prometheus/procfs v0.0.4 // indirect
 	golang.org/x/crypto v0.0.0-20190911031432-227b76d455e7 // indirect
