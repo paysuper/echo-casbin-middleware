@@ -106,7 +106,7 @@ func (cfg *Config) CheckPermission(c echo.Context) bool {
 
 	// EnforceModePermissive log and return true (permission granted)
 	if cfg.Mode == EnforceModePermissive {
-		cfg.Logger.Printf("casbin enforce user:%v path:%v method:%v err:%v rsp:%v", user, path, method, err, rsp.Res)
+		cfg.Logger.Printf("casbin enforce user:%v path:%v method:%v err:%v", user, path, method, err)
 		return true
 	}
 
