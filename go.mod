@@ -2,9 +2,9 @@ module github.com/paysuper/echo-casbin-middleware
 
 require (
 	github.com/labstack/echo/v4 v4.1.6
-	github.com/micro/go-micro v1.9.1
+	github.com/micro/go-micro v1.8.0
 	github.com/miekg/dns v1.1.17 // indirect
-	github.com/paysuper/casbin-server v0.0.0-20190917150141-828c517d1887
+	github.com/paysuper/casbin-server v0.0.0-20190918141556-1ea0c75fd623
 	golang.org/x/crypto v0.0.0-20190911031432-227b76d455e7 // indirect
 	golang.org/x/net v0.0.0-20190909003024-a7b16738d86b // indirect
 	golang.org/x/sys v0.0.0-20190911201528-7ad0cfa0b7b5 // indirect
