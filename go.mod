@@ -41,4 +41,4 @@ replace (
 	gopkg.in/DATA-DOG/go-sqlmock.v1 => github.com/DATA-DOG/go-sqlmock v1.3.3
 )
 
-go 1.13
+go 1.12
