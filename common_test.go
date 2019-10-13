@@ -1,9 +1,11 @@
-package casbin_test
+package casbin
 
 import (
 	"bufio"
 	"context"
 	"flag"
+	casbinServer "github.com/paysuper/casbin-server"
+	"github.com/paysuper/casbin-server/casbinpb"
 	"log"
 	"net"
 	"net/http"
@@ -17,13 +19,10 @@ import (
 	"github.com/labstack/echo/v4/middleware"
 	_ "github.com/mattn/go-sqlite3"
 	"github.com/micro/go-micro/client"
-	casbinmw "github.com/paysuper/echo-casbin-middleware"
 )
 
 var (
-	httpAddr string
-	reqs     []*http.Request
-
+	reqs          []*http.Request
 	getHandler    = func(ctx echo.Context) error { return ctx.String(http.StatusOK, "GET\n") }
 	postHandler   = func(ctx echo.Context) error { return ctx.String(http.StatusCreated, "POST\n") }
 	deleteHandler = func(ctx echo.Context) error { return ctx.NoContent(http.StatusNoContent) }
@@ -47,7 +46,7 @@ func TestMain(m *testing.M) {
 	// Middleware
 	e.Use(middleware.Logger())
 	e.Use(middleware.Recover())
-	e.Use(casbinmw.Middleware(c))
+	e.Use(Middleware(c))
 
 	mapfn := make(map[string]routerFn)
 	mapfn["GET"] = e.GET
@@ -88,7 +87,7 @@ func TestMain(m *testing.M) {
 		log.Fatal(err)
 	}
 
-	app := NewApplication()
+	app := casbinServer.NewApplication()
 	app.Init()
 	go func() {
 		app.Run()
