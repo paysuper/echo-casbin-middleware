@@ -5,7 +5,7 @@ import (
 	"context"
 	"flag"
 	casbinServer "github.com/paysuper/casbin-server"
-	"github.com/paysuper/casbin-server/casbinpb"
+	"github.com/paysuper/casbin-server/pkg/generated/api/proto/casbinpb"
 	"log"
 	"net"
 	"net/http"
