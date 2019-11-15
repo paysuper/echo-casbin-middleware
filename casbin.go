@@ -3,12 +3,12 @@
 package casbin
 
 import (
-	"log"
-
 	"github.com/labstack/echo/v4"
 	"github.com/labstack/echo/v4/middleware"
 	"github.com/micro/go-micro/client"
 	"github.com/paysuper/casbin-server/pkg/generated/api/proto/casbinpb"
+	"log"
+	"strings"
 )
 
 type Logger interface {
@@ -104,8 +104,17 @@ func (cfg *Config) CheckPermission(c echo.Context) bool {
 	user := cfg.CtxUserExtractor(c)
 	method := c.Request().Method
 	path := c.Request().URL.Path
+	var routeType string
+	switch {
+	case len(c.ParamNames()) > 0:
+		routeType = "param"
+	case strings.HasSuffix(c.Path(),"*"):
+		routeType = "wildcard"
+	default:
+		routeType = "static"
+	}
 	// Check permissions
-	_, err := cfg.client.Enforce(c.Request().Context(), &casbinpb.EnforceRequest{Params: []string{user, path, method}})
+	_, err := cfg.client.Enforce(c.Request().Context(), &casbinpb.EnforceRequest{Params: []string{user, path, method, routeType}})
 	if err == nil {
 		return true
 	}
