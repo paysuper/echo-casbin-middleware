@@ -15,7 +15,7 @@ require (
 	github.com/mattn/go-sqlite3 v1.10.0
 	github.com/micro/go-micro v1.8.0
 	github.com/miekg/dns v1.1.17 // indirect
-	github.com/paysuper/casbin-server v0.0.0-20191122132246-d8ec49ebf099
+	github.com/paysuper/casbin-server v0.0.0-20191128090724-930a08d68cec
 	golang.org/x/crypto v0.0.0-20190911031432-227b76d455e7 // indirect
 	golang.org/x/net v0.0.0-20190909003024-a7b16738d86b // indirect
 	google.golang.org/genproto v0.0.0-20190911173649-1774047e7e51 // indirect

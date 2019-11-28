@@ -6,6 +6,7 @@ import (
 	"github.com/labstack/echo/v4"
 	"github.com/labstack/echo/v4/middleware"
 	"github.com/micro/go-micro/client"
+	"github.com/paysuper/casbin-server/pkg"
 	"github.com/paysuper/casbin-server/pkg/generated/api/proto/casbinpb"
 	"log"
 	"strings"
@@ -31,8 +32,6 @@ type (
 		Logger Logger
 		// CtxUserExtractor
 		CtxUserExtractor CtxUserExtractor
-		// ServiceName
-		ServiceName string
 		// Casbin micro service.
 		client casbinpb.CasbinService
 	}
@@ -65,7 +64,7 @@ func (*logger) Printf(fmt string, args ...interface{}) {
 // For missing or invalid credentials, it sends "401 - Unauthorized" response.
 func Middleware(c client.Client, mode EnforceMode) echo.MiddlewareFunc {
 	cfg := DefaultConfig
-	cfg.client = casbinpb.NewCasbinService(cfg.ServiceName, c)
+	cfg.client = casbinpb.NewCasbinService(pkg.ServiceName, c)
 	if mode != EnforceModeUnknown {
 		cfg.Mode = mode
 	}
@@ -82,7 +81,7 @@ func MiddlewareWithConfig(c client.Client, config Config) echo.MiddlewareFunc {
 	if config.CtxUserExtractor == nil {
 		panic("CtxUserExtractor callback function required")
 	}
-	config.client = casbinpb.NewCasbinService(config.ServiceName, c)
+	config.client = casbinpb.NewCasbinService(pkg.ServiceName, c)
 	return func(next echo.HandlerFunc) echo.HandlerFunc {
 		return func(c echo.Context) error {
 			if config.Skipper(c) || config.CheckPermission(c) {
@@ -108,7 +107,7 @@ func (cfg *Config) CheckPermission(c echo.Context) bool {
 	switch {
 	case len(c.ParamNames()) > 0:
 		routeType = "param"
-	case strings.HasSuffix(c.Path(),"*"):
+	case strings.HasSuffix(c.Path(), "*"):
 		routeType = "wildcard"
 	default:
 		routeType = "static"
