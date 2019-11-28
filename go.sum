@@ -516,6 +516,10 @@ github.com/paysuper/casbin-server v0.0.0-20191021200344-f8e360aaf04d h1:nZBqaJ+S
 github.com/paysuper/casbin-server v0.0.0-20191021200344-f8e360aaf04d/go.mod h1:kP4kntb1yUsWmPvPEnkWUbAs+yDd2yLwEhxJ923HCHI=
 github.com/paysuper/casbin-server v0.0.0-20191122132246-d8ec49ebf099 h1:Oyb+/qmUSSGb9k8FyuO9hymZXysigphA6OALjFhrHE0=
 github.com/paysuper/casbin-server v0.0.0-20191122132246-d8ec49ebf099/go.mod h1:2Jdkjg2fQ2echfcyS4xZDM04uBxfr3bfk8bAT+iJSGA=
+github.com/paysuper/casbin-server v0.0.0-20191128084934-8bb5f57d2609 h1:i0CQOVYAR5hXM6Y77FZEJht3mfNplPe6CMSetNyabyg=
+github.com/paysuper/casbin-server v0.0.0-20191128084934-8bb5f57d2609/go.mod h1:2Jdkjg2fQ2echfcyS4xZDM04uBxfr3bfk8bAT+iJSGA=
+github.com/paysuper/casbin-server v0.0.0-20191128090724-930a08d68cec h1:lwjofa1ELNtdtXF/qMGje8VL+tMcRN2bJf0LGVGwM20=
+github.com/paysuper/casbin-server v0.0.0-20191128090724-930a08d68cec/go.mod h1:2Jdkjg2fQ2echfcyS4xZDM04uBxfr3bfk8bAT+iJSGA=
 github.com/pelletier/go-buffruneio v0.2.0/go.mod h1:JkE26KsDizTr40EUHkXVtNPvgGtbSNq5BcowyYOWdKo=
 github.com/pelletier/go-toml v1.2.0/go.mod h1:5z9KED0ma1S8pY6P1sdut58dfprrGBbd/94hg7ilaic=
 github.com/pelletier/go-toml v1.4.0 h1:u3Z1r+oOXJIkxqw34zVhyPgjBsm6X2wn21NWs/HfSeg=
