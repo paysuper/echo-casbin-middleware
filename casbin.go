@@ -81,6 +81,7 @@ func MiddlewareWithConfig(c client.Client, config Config) echo.MiddlewareFunc {
 	if config.CtxUserExtractor == nil {
 		panic("CtxUserExtractor callback function required")
 	}
+	config.Logger.Printf("[CasbinMiddleware] MiddlewareWithConfig", "service_name", pkg.ServiceName)
 	config.client = casbinpb.NewCasbinService(pkg.ServiceName, c)
 	return func(next echo.HandlerFunc) echo.HandlerFunc {
 		return func(c echo.Context) error {
@@ -103,6 +104,7 @@ func (cfg *Config) CheckPermission(c echo.Context) bool {
 	user := cfg.CtxUserExtractor(c)
 	method := c.Request().Method
 	path := c.Request().URL.Path
+	cfg.Logger.Printf("[CasbinMiddleware] CheckPermission", "user", user, "method", method, "path", path)
 	var routeType string
 	switch {
 	case len(c.ParamNames()) > 0:
@@ -114,6 +116,7 @@ func (cfg *Config) CheckPermission(c echo.Context) bool {
 	}
 	// Check permissions
 	_, err := cfg.client.Enforce(c.Request().Context(), &casbinpb.EnforceRequest{Params: []string{user, path, method, routeType}})
+	cfg.Logger.Printf("[CasbinMiddleware] CheckPermission", "err", err)
 	if err == nil {
 		return true
 	}
