@@ -94,7 +94,6 @@ func (cfg *Config) CheckPermission(c echo.Context) bool {
 	user := cfg.CtxUserExtractor(c)
 	method := c.Request().Method
 	path := c.Request().URL.Path
-	cfg.Logger.Info("[CasbinMiddleware] CheckPermission", logger.Args("user", user), logger.Args("method", method), logger.Args("path", path))
 	var routeType string
 	switch {
 	case len(c.ParamNames()) > 0:
@@ -106,7 +105,11 @@ func (cfg *Config) CheckPermission(c echo.Context) bool {
 	}
 	// Check permissions
 	_, err := cfg.client.Enforce(c.Request().Context(), &casbinpb.EnforceRequest{Params: []string{user, path, method, routeType}})
-	cfg.Logger.Info("[CasbinMiddleware] CheckPermission", logger.Args("err", err))
+	cfg.Logger.Info("[CasbinMiddleware] Enforce", logger.Args("user", user))
+	cfg.Logger.Info("[CasbinMiddleware] Enforce", logger.Args("path", path))
+	cfg.Logger.Info("[CasbinMiddleware] Enforce", logger.Args("method", method))
+	cfg.Logger.Info("[CasbinMiddleware] Enforce", logger.Args("routeType", routeType))
+	cfg.Logger.Info("[CasbinMiddleware] Enforce", logger.Args("err", err))
 	if err == nil {
 		return true
 	}
