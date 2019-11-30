@@ -82,7 +82,7 @@ func MiddlewareWithConfig(c client.Client, config Config) echo.MiddlewareFunc {
 		panic("CtxUserExtractor callback function required")
 	}
 	config.Logger.Printf("[CasbinMiddleware] MiddlewareWithConfig", "service_name", pkg.ServiceName)
-	config.client = casbinpb.NewCasbinService(pkg.ServiceName, c)
+	config.client = casbinpb.NewCasbinService("", c)
 	return func(next echo.HandlerFunc) echo.HandlerFunc {
 		return func(c echo.Context) error {
 			if config.Skipper(c) || config.CheckPermission(c) {
