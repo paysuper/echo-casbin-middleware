@@ -3,20 +3,14 @@
 package casbin
 
 import (
+	"github.com/ProtocolONE/go-core/v2/pkg/logger"
 	"github.com/labstack/echo/v4"
 	"github.com/labstack/echo/v4/middleware"
 	"github.com/micro/go-micro/client"
 	"github.com/paysuper/casbin-server/pkg"
 	"github.com/paysuper/casbin-server/pkg/generated/api/proto/casbinpb"
-	"log"
 	"strings"
 )
-
-type Logger interface {
-	Printf(string, ...interface{})
-}
-
-type logger struct{}
 
 type CtxUserExtractor func(c echo.Context) string
 
@@ -29,7 +23,7 @@ type (
 		// Enforce mode
 		Mode EnforceMode
 		// Logger
-		Logger Logger
+		Logger logger.Logger
 		// CtxUserExtractor
 		CtxUserExtractor CtxUserExtractor
 		// Casbin micro service.
@@ -45,7 +39,7 @@ const (
 )
 
 var (
-	DefaultLogger = &logger{}
+	DefaultLogger = &logger.Zap{}
 	// DefaultConfig is the default CasbinAuth middleware config.
 	DefaultConfig = Config{
 		Skipper: middleware.DefaultSkipper,
@@ -53,10 +47,6 @@ var (
 		Logger:  DefaultLogger,
 	}
 )
-
-func (*logger) Printf(fmt string, args ...interface{}) {
-	log.Printf(fmt, args...)
-}
 
 // Middleware returns a CasbinAuth middleware.
 //
@@ -81,8 +71,8 @@ func MiddlewareWithConfig(c client.Client, config Config) echo.MiddlewareFunc {
 	if config.CtxUserExtractor == nil {
 		panic("CtxUserExtractor callback function required")
 	}
-	config.Logger.Printf("[CasbinMiddleware] MiddlewareWithConfig", "service_name", pkg.ServiceName)
 	config.client = casbinpb.NewCasbinService("", c)
+	config.Logger.Info("[CasbinMiddleware] MiddlewareWithConfig", logger.Args("service_name", pkg.ServiceName), logger.Args("client", config.client))
 	return func(next echo.HandlerFunc) echo.HandlerFunc {
 		return func(c echo.Context) error {
 			if config.Skipper(c) || config.CheckPermission(c) {
@@ -104,7 +94,7 @@ func (cfg *Config) CheckPermission(c echo.Context) bool {
 	user := cfg.CtxUserExtractor(c)
 	method := c.Request().Method
 	path := c.Request().URL.Path
-	cfg.Logger.Printf("[CasbinMiddleware] CheckPermission", "user", user, "method", method, "path", path)
+	cfg.Logger.Info("[CasbinMiddleware] CheckPermission", logger.Args("user", user), logger.Args("method", method), logger.Args("path", path))
 	var routeType string
 	switch {
 	case len(c.ParamNames()) > 0:
@@ -116,7 +106,7 @@ func (cfg *Config) CheckPermission(c echo.Context) bool {
 	}
 	// Check permissions
 	_, err := cfg.client.Enforce(c.Request().Context(), &casbinpb.EnforceRequest{Params: []string{user, path, method, routeType}})
-	cfg.Logger.Printf("[CasbinMiddleware] CheckPermission", "err", err)
+	cfg.Logger.Info("[CasbinMiddleware] CheckPermission", logger.Args("err", err))
 	if err == nil {
 		return true
 	}
