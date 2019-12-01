@@ -72,7 +72,7 @@ func MiddlewareWithConfig(c client.Client, config Config) echo.MiddlewareFunc {
 		panic("CtxUserExtractor callback function required")
 	}
 	config.client = casbinpb.NewCasbinService("", c)
-	config.Logger.Info("[CasbinMiddleware] MiddlewareWithConfig", logger.Args("service_name", pkg.ServiceName), logger.Args("client", config.client))
+
 	return func(next echo.HandlerFunc) echo.HandlerFunc {
 		return func(c echo.Context) error {
 			if config.Skipper(c) || config.CheckPermission(c) {
@@ -105,11 +105,7 @@ func (cfg *Config) CheckPermission(c echo.Context) bool {
 	}
 	// Check permissions
 	_, err := cfg.client.Enforce(c.Request().Context(), &casbinpb.EnforceRequest{Params: []string{user, path, method, routeType}})
-	cfg.Logger.Info("[CasbinMiddleware] Enforce", logger.Args("user", user))
-	cfg.Logger.Info("[CasbinMiddleware] Enforce", logger.Args("path", path))
-	cfg.Logger.Info("[CasbinMiddleware] Enforce", logger.Args("method", method))
-	cfg.Logger.Info("[CasbinMiddleware] Enforce", logger.Args("routeType", routeType))
-	cfg.Logger.Info("[CasbinMiddleware] Enforce", logger.Args("err", err))
+
 	if err == nil {
 		return true
 	}
@@ -118,6 +114,9 @@ func (cfg *Config) CheckPermission(c echo.Context) bool {
 		cfg.Logger.Printf("casbin enforce user:%v path:%v method:%v err:%v", user, path, method, err)
 		return true
 	}
+
+	cfg.Logger.Error("casbin enforce with error", logger.Args("err", err))
+
 	// EnforceModeEnforcing return false (permission forbidden)
 	return false
 }
