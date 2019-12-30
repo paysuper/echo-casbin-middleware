@@ -2,7 +2,7 @@
 
 [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
 [![contributions welcome](https://img.shields.io/badge/contributions-welcome-brightgreen.svg?style=flat)](https://github.com/paysuper/echo-casbin-middleware/issues)
-[![Build Status](https://travis-ci.org/paysuper/echo-casbin-middleware.svg?branch=master)](https://travis-ci.org/paysuper/echo-casbin-middleware)
+[![Build Status](https://travis-ci.com/paysuper/echo-casbin-middleware.svg?branch=master)](https://travis-ci.com/paysuper/echo-casbin-middleware)
 [![Go Report Card](https://goreportcard.com/badge/github.com/paysuper/echo-casbin-middleware)](https://goreportcard.com/report/github.com/paysuper/echo-casbin-middleware)
 
 PaySuper Echo Casbin Middleware uses [PaySuper Casbin Server](https://github.com/paysuper/casbin-server) go-micro server with a single policy model.
