@@ -2,11 +2,7 @@ module github.com/paysuper/echo-casbin-middleware
 
 go 1.13
 
-replace (
-	github.com/gogo/protobuf => github.com/gogo/protobuf v1.3.0
-	github.com/hashicorp/consul => github.com/hashicorp/consul v1.5.2
-	github.com/hashicorp/consul/api => github.com/hashicorp/consul/api v1.1.0
-)
+replace github.com/gogo/protobuf => github.com/gogo/protobuf v1.3.0
 
 require (
 	cloud.google.com/go v0.44.0 // indirect
