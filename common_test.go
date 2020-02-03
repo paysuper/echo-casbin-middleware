@@ -1,11 +1,13 @@
+// +build ignore
+
 package casbin
 
 import (
 	"bufio"
 	"context"
 	"flag"
-	casbinServer "github.com/paysuper/casbin-server"
-	"github.com/paysuper/casbin-server/pkg/generated/api/proto/casbinpb"
+	casbinServer "github.com/paysuper/casbin-server/pkg"
+	"github.com/paysuper/paysuper-proto/go/casbinpb"
 	"log"
 	"net"
 	"net/http"
@@ -46,7 +48,7 @@ func TestMain(m *testing.M) {
 	// Middleware
 	e.Use(middleware.Logger())
 	e.Use(middleware.Recover())
-	e.Use(Middleware(c))
+	e.Use(Middleware(c, EnforceModeUnknown))
 
 	mapfn := make(map[string]routerFn)
 	mapfn["GET"] = e.GET
