@@ -7,8 +7,7 @@ import (
 	"github.com/labstack/echo/v4"
 	"github.com/labstack/echo/v4/middleware"
 	"github.com/micro/go-micro/client"
-	"github.com/paysuper/casbin-server/pkg"
-	"github.com/paysuper/casbin-server/pkg/generated/api/proto/casbinpb"
+	"github.com/paysuper/paysuper-proto/go/casbinpb"
 	"strings"
 )
 
@@ -54,7 +53,7 @@ var (
 // For missing or invalid credentials, it sends "401 - Unauthorized" response.
 func Middleware(c client.Client, mode EnforceMode) echo.MiddlewareFunc {
 	cfg := DefaultConfig
-	cfg.client = casbinpb.NewCasbinService(pkg.ServiceName, c)
+	cfg.client = casbinpb.NewCasbinService(casbinpb.ServiceName, c)
 	if mode != EnforceModeUnknown {
 		cfg.Mode = mode
 	}
