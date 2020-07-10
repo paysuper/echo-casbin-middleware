@@ -27,6 +27,8 @@ type (
 		CtxUserExtractor CtxUserExtractor
 		// Casbin micro service.
 		client casbinpb.CasbinService
+		// Service Name
+		ServiceName string
 	}
 )
 
@@ -70,7 +72,9 @@ func MiddlewareWithConfig(c client.Client, config Config) echo.MiddlewareFunc {
 	if config.CtxUserExtractor == nil {
 		panic("CtxUserExtractor callback function required")
 	}
-	config.client = casbinpb.NewCasbinService("", c)
+	if config.client == nil {
+		config.client = casbinpb.NewCasbinService(config.ServiceName, c)
+	}
 
 	return func(next echo.HandlerFunc) echo.HandlerFunc {
 		return func(c echo.Context) error {
